@@ -75,5 +75,28 @@ hr {
 	margin: 0.5em 0;
 }
 
+/* Bullet lists recovered from the source document. */
+ul {
+	margin: 0.2em 0 0.6em;
+	padding-left: 1.5em;
+}
+
+li {
+	margin: 0 0 0.25em;
+}
+
+/* Same-row left|right pair (e.g. name ... link) — borderless layout row. */
+table.pair,
+table.pair td {
+	border: none;
+	background: none;
+	padding: 0;
+	margin: 0.2em 0;
+}
+
+table.pair td.r {
+	text-align: right;
+}
+
 /* Inserted between pages by the template editor. */
 .pagebreak { page-break-before: always; }
