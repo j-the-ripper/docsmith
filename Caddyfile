@@ -1,0 +1,18 @@
+# Single web entrypoint for DocSmith.
+# Serves the compiled React SPA and proxies the API to the FastAPI backend.
+
+:80 {
+	encode gzip zstd
+
+	# Everything under /api goes to FastAPI (which also mounts its routes under /api).
+	handle /api/* {
+		reverse_proxy backend:8000
+	}
+
+	# Static SPA with client-side routing fallback.
+	handle {
+		root * /srv
+		try_files {path} /index.html
+		file_server
+	}
+}

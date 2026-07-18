@@ -1,0 +1,36 @@
+# DocSmith — reflowable PDF template generator.
+#
+# Two services:
+#   backend  — FastAPI + WeasyPrint + tesseract (PDF extract/render), internal only.
+#   web      — Caddy that serves the built React SPA and reverse-proxies /api -> backend.
+#
+# Bring up:  docker compose up --build
+# Open:      http://localhost:8080
+
+services:
+  backend:
+    build: ./backend
+    environment:
+      # SQLite now; swap this URL for a postgres:// DSN later, no code change.
+      - DOCSMITH_DATABASE_URL=sqlite:////data/docsmith.db
+      - DOCSMITH_STORAGE_DIR=/data/storage
+      - DOCSMITH_CORS_ORIGINS=http://localhost:8080,http://localhost:5173
+    volumes:
+      - backend_data:/data
+    expose:
+      - "8000"
+    restart: unless-stopped
+
+  web:
+    build:
+      # Context is the repo root so the image can grab both frontend/ and the root Caddyfile.
+      context: .
+      dockerfile: frontend/Dockerfile
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
+volumes:
+  backend_data:

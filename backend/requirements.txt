@@ -1,0 +1,14 @@
+fastapi>=0.111,<1.0
+uvicorn[standard]>=0.30,<1.0
+sqlalchemy>=2.0,<2.1
+pydantic>=2.7,<3.0
+pydantic-settings>=2.3,<3.0
+python-multipart>=0.0.9
+jinja2>=3.1,<4.0
+markupsafe>=2.1
+weasyprint>=62,<64
+pymupdf>=1.24,<2.0
+pillow>=10.3
+pytesseract>=0.3.10
+bleach[css]>=6.1,<7.0
+openpyxl>=3.1

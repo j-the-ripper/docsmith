@@ -1,0 +1,12 @@
+.git
+**/node_modules
+frontend/dist
+frontend/.vite
+backend/data
+data
+**/__pycache__
+**/*.pyc
+.venv
+venv
+*.log
+.DS_Store
